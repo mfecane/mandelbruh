@@ -1,0 +1,7 @@
+/build*/
+
+/installer/*.exe
+
+*.txt.user
+
+/.vscode/
