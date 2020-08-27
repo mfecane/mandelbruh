@@ -7,9 +7,6 @@
 
 #include <math.h>
 
-long double min = -2.0;
-long double max = 2.0;
-
 typedef struct _Coord {
     long double xmin = -2.0;
     long double xmax = 2.0;
@@ -19,7 +16,7 @@ typedef struct _Coord {
 
 Coord coord;
 
-int MAX_ITERATIONS = 100;
+int MAX_ITERATIONS = 300;
 
 long double map(long double x,
                 long double in_min,
@@ -87,7 +84,7 @@ QImage renderMandelbruh(QSize size)
             byte bright = map(n, 0, MAX_ITERATIONS, 0, 255);
             if(n == MAX_ITERATIONS || bright  < 20) bright = 0;
 
-            byte red = (byte)map(bright * bright, 0, 255 * 25, 0, 512) % 255;
+            byte red = (byte)map(bright * bright, 0, 255 * 255, 0, 255);
             byte green = map(sqrt(bright), 0, sqrt(255), 0, 255);
             byte blue = bright;
 
@@ -99,7 +96,6 @@ QImage renderMandelbruh(QSize size)
 }
 
 // steps :
-// qpainteditem
-// scroolwheel and drag
-// algorithm and coloring
+// drag
+// tweak algorithm and coloring
 

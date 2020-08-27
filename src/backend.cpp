@@ -49,7 +49,7 @@ QImage ImgProvider::requestImage(const QString &id, QSize *size, const QSize &re
 {
     (void)id;
     qDebug() << requestedSize;
-    QImage image = renderMandelbruh(QSize(1024, 1024));
+    QImage image;
     if (size) *size = QSize(image.width(), image.height());
     return image;
 }

@@ -7,7 +7,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 add_definitions(-DUNICODE -D_UNICODE)
-add_definitions(-DMESSAGE_HANDLER)
+add_definitions(-DMANDELBRUH2)
 
 find_package(Qt5 COMPONENTS
     Widgets
@@ -22,9 +22,7 @@ qt5_add_resources(QTRESOURCES src/res.qrc)
 
 file(GLOB_RECURSE SRC_UI
     src/main.qml
-    src/qtquickcontrols2.conf
-    src/imports/Theme/Theme.qml
-    src/Components/WindowList.qml
+    src/Components/Mandelbruh1.qml
 )
 
 add_executable(${PROJECT_NAME} WIN32 
@@ -33,10 +31,15 @@ add_executable(${PROJECT_NAME} WIN32
     src/backend.h
     src/pch.h
     src/pch.cpp
-    src/mandelbruh.h
-    src/mandelbruh.cpp
-    src/mandelbruhview.h
-    src/mandelbruhview.cpp
+    src/mandelbruh1/mandelbruh.h
+    src/mandelbruh1/mandelbruh.cpp
+    src/mandelbruh1/mandelbruhview.h
+    src/mandelbruh1/mandelbruhview.cpp
+
+    src/mandelbruhview2.h
+    src/mandelbruhview2.cpp
+
+    README.md
 
     ${SRC_UI}
     ${RESOURCES}

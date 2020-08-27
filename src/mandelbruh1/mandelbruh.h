@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "../pch.h"
 #include <QImage>
 
 long double map(long double value, long double in_min, long double in_max, long double out_min, long double out_max);

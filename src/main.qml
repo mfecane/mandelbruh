@@ -6,7 +6,6 @@ import QtQuick.Controls.Universal 2.12
 
 import mf.components 1.0
 import "Components"
-import Theme 1.0
 
 Window {
     visible:true
@@ -15,41 +14,18 @@ Window {
     title: "Test application"
     id:wnd
 
-    color: Theme.background_color
-
     ColumnLayout {
 
         anchors.fill: parent;
 
-//        Button {
-//            text:"Refresh"
-//            onClicked: mandelbruhview.updateImage()
-//        }
-
-//        Image {
-//            Layout.fillHeight: true
-//            Layout.fillWidth: true
-//            id:image
-//            source: BackEnd.src
-//            fillMode: Image.PreserveAspectFit
-//        }
-
-        MandelbruhView {
-            id: mandelbruhview
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-
-            MouseArea{
-                anchors.fill: parent
-                onWheel: {
-                    if (wheel.angleDelta.y > 0) {
-                        mandelbruhview.zoomIn(wheel.x, wheel.y)
-                    } else {
-                        mandelbruhview.zoomOut(wheel.x, wheel.y)
-                    }
-                    wheel.accepted=true
-                } // onWheel
-            } // MouseArea
-        } // MandelbruhView
+        MandelbruhView2
+        {
+            SequentialAnimation on t {
+                NumberAnimation { to: 1; duration: 2500; easing.type: Easing.InQuad }
+                NumberAnimation { to: 0; duration: 2500; easing.type: Easing.OutQuad }
+                loops: Animation.Infinite
+                running: true
+            }
+        }
     }
 }

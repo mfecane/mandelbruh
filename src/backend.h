@@ -9,8 +9,6 @@
 #include <QTimer>
 #include <QQuickImageProvider>
 
-#include "mandelbruh.h"
-
 // ------------------------------------------
 
 class BackEnd: public QObject
