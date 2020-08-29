@@ -112,7 +112,6 @@ qreal MandelbruhView2::t() const
 
 void MandelbruhView2::setT(qreal t)
 {
-        qDebug() << t;
     if (t == m_t)
         return;
     m_t = t;
