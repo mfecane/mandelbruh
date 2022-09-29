@@ -15,6 +15,7 @@ void main()
 
 #shader fragment
 #version 400 core
+#define MAX_ITERATIONS 255
 
 out vec4 FragColor;
 in vec4 uv;
@@ -34,14 +35,31 @@ void main()
 
     dvec2 z;
     float iter;
-    for (iter = 0.0; iter < 255; iter++) {
+
+    // additional iterations
+    float thininness = length(vec2(u_bounds.y - u_bounds.x, u_bounds.w - u_bounds.z));
+    float add = (1 - log(thininness)) * MAX_ITERATIONS / 3;
+    //if(add > MAX_ITERATIONS * 3) add = MAX_ITERATIONS* 3;
+
+    float max_it = MAX_ITERATIONS + add;
+
+    for (iter = 0.0; iter < max_it; iter++) {
         z = dvec2(z.x * z.x - z.y * z.y, 2 * z.x * z.y) + c;
         if (length(z) > 2) break;
     }
 
+    float t = (iter == max_it) ? 0 : (iter / max_it);
+//    float t = add / MAX_ITERATIONS / 3;
+
     FragColor = vec4(
-        iter / 255,
-        iter * iter / 255 / 255,
-        sqrt(iter) / sqrt(255),
+         9.0 *    (1 - t)    * pow(t, 3),
+        15.0 * pow(1 - t, 2) * pow(t, 2),
+         8.5 * pow(1 - t, 3) *     t,
         1.0);
+
+//    FragColor = vec4(
+//        t,
+//        t,
+//        t,
+//        1.0);
 };
